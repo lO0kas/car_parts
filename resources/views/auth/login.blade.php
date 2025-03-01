@@ -31,7 +31,7 @@
                     name="password"
                     id="login-password"
                     required 
-                    maxlength="255"
+                    maxlength="60"
                     class="form-control @error('password') is-invalid @enderror"
                     value="{{ old('password') }}"
                     placeholder="Password"

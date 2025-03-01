@@ -15,7 +15,7 @@ class PartController extends Controller
     public function index(ListRequest $request): RedirectResponse|View
     {
         if ($request->submit) {
-            return to_route('cars.index', $request->validated());
+            return to_route('parts.index', $request->validated());
         }
 
         return view('parts.index', [

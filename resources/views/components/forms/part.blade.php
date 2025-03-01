@@ -31,7 +31,8 @@
         <input 
             type="text" 
             name="serialnumber"
-            id="part-serialnumber" 
+            id="part-serialnumber"
+            required
             maxlength="255" 
             class="form-control @error('serialnumber') is-invalid @enderror"
             value="{{ old('serialnumber') ?? $serialnumber }}"

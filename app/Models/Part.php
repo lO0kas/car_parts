@@ -24,10 +24,13 @@ class Part extends Model
 
     public static function filtered(array $filter): LengthAwarePaginator
     {
-        $query = Part::query();
+        $query = Part::query()->select('parts.*');
 
         if (isset($filter['term']) && $filter['term']) {
-            $query->where('name', 'LIKE', '%' . $filter['term'] . '%')->orWhere('serialnumber', 'LIKE', '%' . $filter['term'] . '%')->orWhere('car.name', 'LIKE', '%' . $filter['term'] . '%');
+            $query->join('cars', 'parts.car_id', 'cars.car_id')
+                ->where('parts.name', 'LIKE', '%' . $filter['term'] . '%')
+                ->orWhere('parts.serialnumber', 'LIKE', '%' . $filter['term'] . '%')
+                ->orWhere('cars.name', 'LIKE', '%' . $filter['term'] . '%');
         }
 
         return $query->paginate(15);
