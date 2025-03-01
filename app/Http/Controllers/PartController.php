@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\Part;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Requests\ListRequest;
 use App\Http\Requests\PartRequest;
+use Illuminate\Http\RedirectResponse;
 
 class PartController extends Controller
 {
-    public function index(ListRequest $request)
+    public function index(ListRequest $request): RedirectResponse|View
     {
         if ($request->submit) {
             return to_route('cars.index', $request->validated());
@@ -22,7 +24,7 @@ class PartController extends Controller
     }
 
 
-    public function create()
+    public function create(): View
     {
         return view('parts.create', [
             'cars' => Car::all()
@@ -30,14 +32,14 @@ class PartController extends Controller
     }
 
 
-    public function store(PartRequest $request)
+    public function store(PartRequest $request): RedirectResponse
     {
         Part::create($request->validated())->save();
         return to_route('parts.index');
     }
 
 
-    public function edit(Part $part)
+    public function edit(Part $part): View
     {
         return view('parts.edit', [
             'part' => $part,
@@ -46,14 +48,14 @@ class PartController extends Controller
     }
 
  
-    public function update(PartRequest $request, Part $part)
+    public function update(PartRequest $request, Part $part): RedirectResponse
     {
         $part->update($request->validated());
         return back();
     }
 
   
-    public function destroy(Part $part)
+    public function destroy(Part $part): RedirectResponse
     {
         $part->delete();
         return back();

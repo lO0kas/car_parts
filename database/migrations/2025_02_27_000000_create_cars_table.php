@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('cars', function (Blueprint $table) {
@@ -24,18 +21,16 @@ return new class extends Migration
             $table->string('name');
             $table->string('serialnumber');
             $table->foreignId('car_id')
+                ->nullable()
                 ->references('car_id')
                 ->on('cars')
                 ->onUpdate('cascade')
-                ->onDelete('cascade')
-                ->nullable();
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('parts');
