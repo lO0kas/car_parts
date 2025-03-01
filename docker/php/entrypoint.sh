@@ -1,7 +1,8 @@
 #!/bin/bash
 
-composer install -y --ignore-platform-reqs
-npm run build -y
+composer install --ignore-platform-reqs
+npm install
+npm run build
 php artisan migrate:fresh --seed
 
 if [ ! -f '.env' ]; then
