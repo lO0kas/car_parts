@@ -19,7 +19,7 @@
     - e-mail: root@root.com
     - password: root
 
-## dobre vediet
+## Dobre vediet
 - docker je nastaveny tak, ze po spusteni kontainerov sa automaticky spustia prikazy potrebne pre fungovanie projektu, pozri "docker/php/entrypoint.sh", sucastou tychto prikazov je aj vytvorenie zakladneho uzivatela pre prihlasenie do aplikacie
 - pre nedostatok casu som sa nezaoberal s drobnostami, ktore niesu potrebne pre beh projektu ako su testy, preklady, dokumentacia a podobne
 - pri spusteni dockeru si treba davat pozov na porty, nieco na nich moze uz bezat napr. iny kontainer alebo aplikacia
