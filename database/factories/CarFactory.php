@@ -8,17 +8,10 @@ class CarFactory extends Factory
 {
     public function definition(): array
     {
-        $isRegistered = rand(0, 1);
-
-        if ($isRegistered) {
-            $alphas = range('A', 'Z');
-            $licencePlate = $alphas[rand(0, str_len($alphas))] . $alphas[rand(0, str_len($alphas))] . rand(0, 9) . rand(0, 9) . rand(0, 9) . $alphas[rand(0, str_len($alphas))] . $alphas[rand(0, str_len($alphas))];    
-        }
-
         return [
             'name' => fake()->name(),
-            'registration_number' => null,
-            'is_registered' => false
+            'is_registered' => $isRegistered = rand(0, 1) ? Str::random(10) : null,
+            'registration_number' => $isRegistered
         ];
     }
 }

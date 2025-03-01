@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('registration_number')->nullable();
             $table->boolean('is_registered')->default(false);
-            $table->datetime('created_at')->useCurrent();
-            $table->datetime('updated_at')->useCurrentOnUpdate();
+            $table->timestamps();
         });
 
         Schema::create('parts', function (Blueprint $table) {
@@ -30,8 +29,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade')
                 ->nullable();
-            $table->datetime('created_at')->useCurrent();
-            $table->datetime('updated_at')->useCurrentOnUpdate();
+            $table->timestamps();
         });
     }
 

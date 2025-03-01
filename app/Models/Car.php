@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -11,20 +12,24 @@ class Car extends Model
     use HasFactory;
 
     protected $primaryKey = 'car_id';
-    protected $fillable = ['name', 'registration_number', 'is_registered'];
+    protected $fillable = ['name', 'is_registered', 'registration_number'];
+    protected $attributes = ['name' => '', 'is_registered' => false, 'registration_number' => null];
 
 
     public function parts(): HasMany
     {
-        return $this->hasMany(Part::class);
+        return $this->hasMany(Part::class, 'car_id', 'car_id');
     }
 
 
-    protected function casts(): array
+    public static function filtered(array $filter): LengthAwarePaginator
     {
-        return [
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-        ];
+        $query = Car::query();
+
+        if (isset($filter['term']) && $filter['term']) {
+            $query->where('name', 'LIKE', '%' . $filter['term'] . '%')->orWhere('registration_number', 'LIKE', '%' . $filter['term'] . '%');
+        }
+
+        return $query->paginate(15);
     }
 }
