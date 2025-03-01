@@ -17,4 +17,8 @@ WORKDIR /var/www
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]
+
 USER $user

@@ -15,7 +15,7 @@ body {
 }
 
 #sidebar {
-    --bs-offcanvas-width: 200px;
+    --bs-offcanvas-width: 250px;
     --bs-offcanvas-border-width: var(--bs-border-width);
     --bs-offcanvas-bg: var(--bs-primary);
 
@@ -76,11 +76,17 @@ body {
 
 .dropdown {
     &.no-arrow {
-        .dropdown-toggle {
+        & > .dropdown-toggle {
             &::after {
                 display: none;
             }
         }
+    }
+
+    .dropdown-menu {
+        --bs-dropdown-link-hover-color: white;
+        --bs-dropdown-link-hover-bg: var(--bs-primary);
+        --bs-dropdown-padding-y: 0;
     }
 }
 

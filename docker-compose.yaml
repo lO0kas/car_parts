@@ -30,11 +30,11 @@ services:
       - 3000:3000
     expose: 
       - 9000
-    # command: composer install --ignore-platform-reqs && php artisan key:generate
-    tty: true
-    stdin_open: true
     networks:
       - default
+    depends_on:
+      mysql:
+        condition: service_started
 
   mysql:
     image: mysql

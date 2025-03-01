@@ -32,6 +32,7 @@
                 name="is_registered" 
                 id="car-is-registered"
                 class="form-check-input @error('is_registered') is-invalid @enderror"
+                value="1"
                 @checked(old('is_registered', $isRegistered))
             > 
             <label for="car-is-registered" class="form-check-label">is registered</label>
